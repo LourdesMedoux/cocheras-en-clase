@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { COCHERAS } from '../../interfaces/cochera';
+import { Cochera } from '../../interfaces/cochera';
 import { HeaderComponent } from "../../components/header/header.component";
 import { AuthService } from '../../service/auth.service';
 import Swal from 'sweetalert2';
@@ -30,7 +30,7 @@ throw new Error('Method not implemented.');
     ingreso: 'Ingreso',
     acciones: 'Acciones'
   };
-  filas: COCHERAS[] = [];
+  filas: Cochera[] = [];
   estacionamientos = inject(EstacionamientoService);
   auth = inject(AuthService);
   cocheras = inject(CocherasService);
@@ -40,7 +40,7 @@ throw new Error('Method not implemented.');
   }
 
   traerCocheras() {
-    this.cocheras.cocheras().then((cocheras: COCHERAS[]) => {
+    this.cocheras.cocheras().then((cocheras: Cochera[]) => {
       this.filas = [];
       cocheras.forEach(cochera => {
         this.estacionamientos.buscarEstacionamientoActivo(cochera.id).then(estacionamiento => {
