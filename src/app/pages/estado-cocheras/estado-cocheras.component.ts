@@ -17,9 +17,7 @@ import { Estacionamiento } from '../../interfaces/estacionamiento';
   styleUrls: ['./estado-cocheras.component.scss']
 })
 export class EstadoCocherasComponent implements OnInit {
-cobrarEstacionamiento(arg0: number) {
-throw new Error('Method not implemented.');
-}
+
 agregarFila() {
 throw new Error('Method not implemented.');
 }
@@ -102,6 +100,55 @@ throw new Error('Method not implemented.');
           console.error("Error al abrir el estacionamiento:", error);
         });
       }
+    });
+  }
+  cobrarEstacionamiento(idCochera: number) {
+    this.estacionamientos.buscarEstacionamientoActivo(idCochera).then(estacionamiento => {
+      if (!estacionamiento || estacionamiento.length === 0) {
+        Swal.fire({
+          title: "Error",
+          text: "No se encontró un estacionamiento activo para la cochera",
+          icon: "error"
+        });
+        return;
+      }
+
+      console.log(estacionamiento)
+  
+      // Convertir horaIngreso a un objeto Date
+      const horaIngreso = new Date(estacionamiento[0].horaIngreso);
+      const tiempoTranscurridoMs = new Date().getTime() - horaIngreso.getTime();
+      const horas = Math.floor(tiempoTranscurridoMs / (1000 * 60 * 60));
+      const minutos = Math.floor((tiempoTranscurridoMs % (1000 * 60 * 60)) / (1000 * 60));
+      const precio = (tiempoTranscurridoMs / 1000 / 60 / 60); // Precio por hora, formateado a dos decimales
+  
+      Swal.fire({
+        title: "Cobrar estacionamiento",
+        text: `Tiempo transcurrido: ${horas}hs ${minutos}mins - Precio: $${precio.toFixed(2)}`,
+        icon: "info",
+        showCancelButton: true,
+        confirmButtonColor: "#00c98d",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Cobrar",
+        cancelButtonText: "Cancelar"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.estacionamientos.cobrarEstacionamiento(idCochera, estacionamiento[0].patente, precio).then(() => {
+            Swal.fire("Estacionamiento cobrado", "El estacionamiento ha sido cobrado correctamente.", "success");
+            this.traerCocheras();
+          }).catch(error => {
+            console.error("Error al cobrar el estacionamiento:", error);
+            Swal.fire("Error", "Hubo un error al cobrar el estacionamiento.", "error");
+          });
+        }
+      });
+    }).catch(error => {
+      console.error("Error al buscar el estacionamiento activo:", error);
+      Swal.fire({
+        title: "Error",
+        text: "Hubo un error al buscar el estacionamiento.",
+        icon: "error"
+      });
     });
   }
 }
