@@ -1,0 +1,12 @@
+<div id="header">
+    <h1>ESTADO DE COCHERAS</h1>
+    <div class="user-actions">
+        <a [routerLink]="['/usurio']">👤</a>
+        <a [routerLink]="['/login']">Cerrar sesión</a>
+        @if (esAdmin) {
+         <a routerLink="['/Reportes']" routerLinkActive="activa">Reportes</a>
+         <a>Precios</a> }
+
+    </div>
+    
+</div>

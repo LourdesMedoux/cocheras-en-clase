@@ -1,0 +1,17 @@
+
+<section>
+    <div id="izquierda"> 
+        <div id="cuerpo">
+            <form>
+                <h1>PARKING APP 🏎️</h1>
+                <label for="usuario">Usuario</label>
+                <input type="text" id="usuario" placeholder="usuario" #user>
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" placeholder="contraseña" #pass>
+                <button type="button" class="boton-resaltado" (click)="Login(user, pass)">Iniciar sesión</button>
+            </form>
+            <a [routerLink]="['/registro']">Registrarse</a>
+        </div>
+    </div>
+ </section>
+ 

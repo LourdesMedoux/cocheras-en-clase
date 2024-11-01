@@ -1,0 +1,76 @@
+#izquierda {
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: 50px; /* Ajusté el tamaño para que sea más manejable */
+    color: #040404;
+    margin-bottom: 20px;
+    text-align: center; /* Alinea el título en el centro */
+}
+
+#cuerpo {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los elementos dentro del formulario */
+    justify-content: center; /* Centra el formulario en la pantalla */
+    padding: 20px;
+    background-color: rgba(240, 248, 255, 0.2); /* Fondo semitransparente */
+    border-radius: 10px;
+    width: 300px; /* Tamaño más compacto del contenedor */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%; /* El formulario ocupará el ancho total del contenedor */
+}
+
+input[type="text"], input[type="password"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #000; /* Cambié el color del texto de los inputs a negro para mejor legibilidad */
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco */
+    width: 100%; /* Para que ocupe todo el ancho del formulario */
+}
+
+button {
+    padding: 12px;
+    font-size: 16px;
+    background-color: #a1bddb;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-3px);
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../../../../public/WhatsApp\ Image\ 2024-09-11\ at\ 11.13.25.jpeg);
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+}
+
+a {
+    color: #1e2022;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;
+}
